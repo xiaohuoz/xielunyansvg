@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="./snap.svg-min.js"></script>
+    </head>
+    <body>
+        <svg id="svg" viewBox="0,0,300,300" style="width:100px;height:100px;"></svg>
+        <script>
+            (function(){
+                var s = Snap('#svg');
+                var c = s.circle(150,150,145);
+                c.attr({
+                    fill: "R(150,150,145)#000",
+                    stroke: '#000',
+                    strokeWidth: 10,
+                });
+                var l1 = s.path('m 150 20 a205 205 0 0 0 0 260a205 205 0 0 0 0 -260');
+                var l2 = s.path('m 150 20 a205 205 0 0 0 0 260a205 205 0 0 0 0 -260');
+                var l3 = s.path('m 150 20 a205 205 0 0 0 0 260a205 205 0 0 0 0 -260');
+                l1.transform(new Snap.Matrix().rotate(-60, 150, 150));
+                l2.transform(new Snap.Matrix().rotate(60, 150, 150));
+                var g = s.group(l1,l2,l3);
+                // var c3 = s.path("m150 295a100 100 0 0 0 150 5");
+                g.attr({
+                    fill: '#FE7368',
+                    fillOpacity: 1,
+                    stroke: "#000",
+                    strokeWidth: 0
+                });
+                var l4 = s.path('m 150 20 a205 205 0 0 0 0 260a205 205 0 0 0 0 -260');
+                var l5 = s.path('m 150 20 a205 205 0 0 0 0 260a205 205 0 0 0 0 -260');
+                var l6 = s.path('m 150 20 a205 205 0 0 0 0 260a205 205 0 0 0 0 -260');
+                l4.transform(new Snap.Matrix().rotate(-60, 150, 150));
+                l5.transform(new Snap.Matrix().rotate(60, 150, 150));
+                var g2 = s.group(l4,l5,l6);
+                g2.attr({
+                    fill: '#fff',
+                    fillOpacity: 0,
+                    stroke: "#000",
+                    strokeWidth: 5
+                });
+                c1 = s.circle(150,150,20);
+                c1.attr({
+                    fill: "#000",
+                });
+                var angle = 0;
+                g3 = s.group(g,g2,c1);
+                // g3.animate({transform: new Snap.Matrix().rotate(60, 150, 150)},1000,mina.time);
+                var rot = function(){
+                    Snap.animate(0, 360*1.5, function (value) {
+                        g3.transform(new Snap.Matrix().rotate(value, 150, 150));
+                    }, 1000*1.5,mina.easeinout,function(){
+                        console.log('animation finished');
+                    });
+                }
+                document.getElementById('svg').onclick = function(){
+                    rot();
+                };
+                rot();
+            })();
+        </script>
+    </body>
+</html>

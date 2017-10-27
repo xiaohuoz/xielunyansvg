@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+        <script src="./snap.svg-min.js"></script>
+    </head>
+    <body>
+        <svg id="svg" viewBox="0,0,300,300" style="width:300px;height:300px"></svg>
+        <script>
+            var s = Snap('svg');
+            var r = s.rect(0,0,300,300);
+            var c = s.ellipse(150,177.5,60,45);
+            var c1 = s.ellipse(185,105,30,26);
+            var c2 = s.ellipse(115,105,30,26);
+            var c3 = s.ellipse(63,155,18,15);
+            var c4 = s.ellipse(237,155,18,15);
+            var group = s.group(c,c1,c2,c3,c4);
+            c1.transform(new Snap.Matrix().rotate(-60, 180, 100));
+            c2.transform(new Snap.Matrix().rotate(60, 120, 100));
+            c3.transform(new Snap.Matrix().rotate(45, 75, 160));
+            c4.transform(new Snap.Matrix().rotate(-45, 225, 160));
+            group.attr({
+                fill: 'white',
+            });
+        </script>
+    </body>
+</html>
